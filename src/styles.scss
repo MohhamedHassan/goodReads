@@ -1,0 +1,103 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+body{padding-top: 60px;}
+.register , .login{
+    min-height: 100vh;
+
+    button {
+        background-color:#F4F1EA ;
+        border: none;
+        transition: .5s;
+        border: 1px solid #D6D0C4;
+        &:hover {
+            background-color: #ede6d6;
+        }
+    }
+    label {margin:0}
+}
+
+.imgWidth,.widthh{width:50%}
+.borderAround {
+  border: 1px solid gray;
+  padding: 15px;
+  border-radius: 20px;
+}
+footer {
+  background: #000;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 786px) {
+ .widthh{width:90%}
+ .imgWidth{width: 70%;}          
+        .books {
+            img {
+                width: 100px !important;
+            }
+        }
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    background-color:#13151F;
+    color: white;
+}
+.fa-star {
+    color:#716f6f
+}
+.rateee {
+    background: -webkit-gradient(linear,left top,right top,from(#8a2387),color-stop(#e94057),to(#f27121));
+    background: linear-gradient(to right,#8a2387,#e94057,#f27121);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 10px;
+  }
+  .shadoww {
+    box-shadow: 0 0 20px #000;
+    height: 100%;
+    padding: 15px;
+  }
+  .fa-star ,.fa-star-half-alt{
+    font-size: 20px;
+  }
+  .rateMe i {cursor: pointer;}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: 8px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

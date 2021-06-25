@@ -1,0 +1,72 @@
+
+<div *ngIf="pageLoading" style="height: 95vh;" class="d-flex justify-content-center align-items-center">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="bookDetails py-5 my-5" *ngIf="BookDetails">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div>
+
+                    <img height="400" [src]="BookDetails.image"  class="w-100 mb-2" alt="">
+                  
+                  
+                </div>
+            </div>
+            <div class="col-md-8 mb-4">
+
+                <div>          
+                    <p class="ratee d-inline-block">{{BookDetails.rate}}</p>
+                    <h2>{{BookDetails.name}}</h2>
+                    <h5>BY: {{BookDetails.authorId.name}}</h5>
+                    <p> {{BookDetails.description}}</p>
+                    <div class="my-2">
+                        <span class="mr-3">Rating:</span>
+                      <ng-container 
+                      *ngFor="let star of rateHistory;let rated = index;trackBy:track">
+                        <i 
+                       [style.color]="star ? 'orange' : '#716f6f'"
+                       [class]="star == 'half' ? 'fa-star-half-alt' : 'fa-star'"
+                            class="fas "></i>
+                      </ng-container>
+                      
+                    </div>
+                    <p><span class="mr-3">Type:</span> {{BookDetails.type}}</p>
+             
+                    <div class="my-2 rateMe d-flex align-items-center">
+                        <span class="mr-3">Rate This Book</span>
+
+                        <div *ngIf="!rateMe[2].loading && !rateMe[3].message">
+                            <i *ngFor="let star of rateMe[0];let i = index;trackBy:track"
+                                (click)="orangeOnClick(i,BookDetails._id)"
+                                (mouseover)="orangeOnHover(i)"
+                                (mouseleave)="grayOnMouseleave()"
+                                [style.color]="star ? 'orange' : '#716f6f'" class="fas fa-star"></i>
+                             
+                        </div>
+                        <span *ngIf="rateMe[3].message">thanks for rating
+
+                        </span>
+                   
+                            <div class="text-center" *ngIf="rateMe[2].loading">
+                                <div class="lds-ring">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+        
+    </div>
+</div>

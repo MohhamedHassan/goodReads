@@ -1,0 +1,61 @@
+
+
+<div class="register d-flex justify-content-center align-items-center mb-5" style="color: black !important;">
+    <div class="widthh my-5 bg-white p-3 text-center" style="border-radius: 15px;">
+        <img src="assets/signup.PNG" alt="" class="w-100">
+   <div class="borderAround">
+    <h3>Sign up for Goodreads</h3>
+    <form [formGroup]="createAccoutForm" (ngSubmit)="signUp(createAccoutForm.value)">
+        <div class="form-group text-left">
+            <input placeholder="Name" formControlName="name" type="text" class="form-control">
+            <ng-container *ngIf="getName.touched">
+                <p class="text-danger my-2">
+                    <ng-container *ngIf="getName.errors?.required">Name is requred</ng-container>
+                    <ng-container *ngIf="getName.errors?.minlength">min length 4</ng-container>
+                </p>
+            </ng-container>
+
+
+        </div>
+        <div class="form-group text-left">
+            <input placeholder="Email" formControlName="email" type="email" class="form-control">
+            <ng-container *ngIf="getEmail.touched">
+                <p class="text-danger my-2">
+                    <ng-container *ngIf="getEmail.errors?.required">Email is requred</ng-container>
+                    <ng-container *ngIf="getEmail.errors?.email">enter a valid email</ng-container>
+                </p>
+            </ng-container>
+        </div>
+        <div class="form-group text-left">
+
+            <input placeholder="Password" formControlName="password" type="password" class="form-control">
+            <ng-container *ngIf="getPassword.touched">
+                <p class="text-danger my-2">
+                    <ng-container *ngIf="getPassword.errors?.required">password is requred</ng-container>
+                    <ng-container *ngIf="getPassword.errors?.minlength">min length is 6</ng-container>
+                </p>
+            </ng-container>
+        </div>
+        <div class="d-md-flex justify-content-center align-items-center">
+         
+            <button [disabled]="createAccoutForm.invalid" type="submit" class="mr-md-4 mb-2 p-2 rounded">Sign
+                up</button>
+            <p class="m-0">Already a member? <a routerLink="../login"> Sign In</a></p>
+        </div>
+        <div *ngIf="loading"> 
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <p *ngIf="createAccountError" class="my-2 alert alert-danger">
+            {{createAccountError}}
+        </p>
+    </form>
+   </div>
+    </div>
+
+
+</div>

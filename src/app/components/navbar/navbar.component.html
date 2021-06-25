@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+<div class="container">
+    <h1 class="m-0 navbar-brand" routerLink='/home' >GoodReads</h1>
+    <button (click)="showNav()" *ngIf="auth.isLogin()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <i class="fas fa-bars text-white"></i>
+    </button>
+  
+    <div [class.show]="show" class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul class="navbar-nav ml-auto" *ngIf="auth.isLogin()">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="allBooks">All Books</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink='profile/myBooks'>MyBooks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active"  routerLink='profile/addBook'>Add Book</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/profile">Profile</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link"  style="cursor: pointer;" (click)='signOut()'>Sign Out </a>
+          </li>
+      </ul>
+    
+    </div>
+</div>
+  </nav>

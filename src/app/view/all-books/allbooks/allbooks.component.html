@@ -1,0 +1,89 @@
+
+
+ <div class="coverr bg-white text-center">
+    <img src="assets/cover.png"  alt="" class="imgWidth">
+  </div>
+<div *ngIf="loading" style="height: 95vh;" class="d-flex justify-content-center align-items-center">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<ng-template #empty>
+    <div class="container py-5 text-center">
+        There are no books <a style="color:blue" routerLink='/profile/addBook'>add new Book ? </a>
+    </div>
+</ng-template>
+<div class="userBooks py-5" *ngIf="allBooks.length; else empty">
+    <div class="container">
+        <input type="text" placeholder="search.." class="form-control my-4" [(ngModel)]="searchValue">
+        <div class="row">
+            <div class="col-md-6 mb-4" *ngFor="let book of allBooks | search : searchValue;let containerIndex = index">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div>
+                            <a [routerLink]='["/bookDetails",book._id]'>
+
+                                <img height="400" [src]="book.image" class="w-100" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="position-relative shadoww">
+                            <h2 class="mt-4">{{book.name}}</h2>
+                            <h5>BY: {{book.authorId.name}}</h5>
+                            <p> {{book.description | text}} <span [routerLink]='["/bookDetails",book._id]'
+                                    style="cursor: pointer;">...more</span> </p>
+                            <div class="my-2">
+                                <span class="mr-3">Rating:</span>
+                              <ng-container 
+                              *ngFor="let star of stars[containerIndex][4];let rated = index;trackBy:track">
+                                <i 
+                               [style.color]="star ? 'orange' : '#716f6f'"
+                               [class]="star == 'half' ? 'fa-star-half-alt' : 'fa-star'"
+                                    class="fas "></i>
+                              </ng-container>
+                              
+                            </div>
+                            <p> <span class="mr-4">Type:</span> {{book.type}}</p>
+                            <p class="rateee">{{book.rate}}</p>
+                            <div class="my-2 rateMe d-flex align-items-center">
+                                <span class="mr-3">Rate This Book</span>
+
+                                <div *ngIf="!stars[containerIndex][2].loading && !stars[containerIndex][3].message">
+                                    <i *ngFor="let star of stars[containerIndex][0];let i = index;trackBy:track"
+                                        (click)="ratebook(i,containerIndex,book._id)"
+                                        (mouseover)="orangeOnHover(i,containerIndex)"
+                                        (mouseleave)="grayOnMouseleave(i,containerIndex)"
+                                        [style.color]="star ? 'orange' : '#716f6f'" class="fas fa-star"></i>
+                                     
+                                </div>
+                                <span *ngIf="stars[containerIndex][3].message">thanks for rating
+
+                                </span>
+                           
+                                    <div class="text-center" *ngIf="stars[containerIndex][2].loading">
+                                        <div class="lds-ring">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

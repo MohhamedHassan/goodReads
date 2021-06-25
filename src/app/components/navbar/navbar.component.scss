@@ -1,0 +1,23 @@
+nav {
+    background-color: #13151F !important; 
+    border-bottom: 1px solid black;
+    .nav-link{
+        padding: 10px;
+        &:hover {
+            background-color: white;
+            transition: .5s;
+        }
+        font-weight: bold;color:white }
+}
+.active {
+    &:hover {
+        background-color: #FDD861;
+    }
+    color:#FDD861 !important
+}
+.navbar-brand
+{
+    font-family: 'Pacifico', cursive;
+color:white !important;
+cursor: pointer;
+}

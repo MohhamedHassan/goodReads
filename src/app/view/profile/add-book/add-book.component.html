@@ -1,0 +1,97 @@
+
+<div *ngIf="updateLoading" style="height: 100vh;" class="d-flex justify-content-center align-items-center">
+  <div class="lds-ring">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</div>
+<div class="widthh mx-auto py-5">
+    <h2 class="text-center mb-4">Add Book</h2>
+    <form [formGroup]="addBookForm" #frm  (ngSubmit)="addBook(addBookForm.value)">
+       
+          <div class="form-group">
+              <label>Book Name</label>
+              <input
+              formControlName="name" type="text" class="form-control">
+              <p 
+               *ngIf='getControls.name.touched && getControls.name.errors?.required'
+              class="text-danger py-2">Book Name Is Required</p>
+          </div>
+          <div class="form-group">
+              <label>Book Type</label>
+            <input 
+            formControlName="type" type="text" class="form-control">
+            <p 
+             *ngIf='getControls.type.touched && getControls.type.errors?.required'
+            class="text-danger py-2">Book Type Is Required</p>
+        </div>
+        <div class="form-group"   *ngIf="addOrUpdate">
+            <label>Book Image </label>
+            <input
+            
+            (change)="chooseImage($event)"
+            formControlName="image" type="file" class="form-control">
+            <p 
+             *ngIf='getControls.image.touched && getControls.image.errors?.required'
+            class="text-danger py-2">Book Image Is Required</p>
+        </div>
+        <div class="form-group">
+            <label>Book description</label>
+            <textarea
+            formControlName="description" class="form-control"
+            name="" id="" cols="30" rows="5"></textarea>
+      
+            <p 
+             *ngIf='getControls.description.touched && getControls.description.errors?.required'
+            class="text-danger py-2">Book Description Is Required</p>
+        </div>
+        <button *ngIf="addOrUpdate" [disabled]="addBookForm.invalid"   type="submit" class="btn btn-success w-100 d-flex justify-content-center align-items-center">
+     <div class="mr-4 py-1" *ngIf="addLoading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+     </div>
+          Add</button>
+   <div class="my-3">
+    <button  *ngIf="!addOrUpdate"   type="button" (click)="updateBook()" class="btn btn-success w-100  d-flex justify-content-center align-items-center">
+      <div class="mr-4 py-1" *ngIf="updatebuttonLoading">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+       </div>
+      Update</button>
+    <button  *ngIf="!addOrUpdate" class="btn btn-success my-2 w-100" (click)="modalService.show(bookPicture)" type="button">update Book Image</button>
+   </div>
+        <p *ngIf="addBookError" class="alert alert-danger my-2">
+            {{addBookError}}
+        </p>
+    </form>
+</div>
+<ng-template #bookPicture>
+
+    <div class="modal-body">
+      <div class="my-3 ">
+        <input class="form-control" type="file" (change)="updateImage($event)" name="" id="">
+      </div>
+      <div class="text-center">
+        <button (click)=" updateBookImage()" class="mx-3 btn btn-success">save</button>
+        <button (click)="modalService.hide()" class=" btn btn-secondary">cancel</button>
+        <div *ngIf="updateImageLoading" class="text-center">
+          <div class="lds-ring updateImage">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </ng-template>

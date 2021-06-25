@@ -1,0 +1,17 @@
+.homePage {
+   button {
+       background-color: #13151F;;
+       border: none;
+       width:100%;
+       border-radius: 20px;
+   }
+   a {
+       color:#007bff;
+       cursor: pointer;
+       &:hover {
+           text-decoration: underline;
+       }
+   }
+   color: black !important;
+   background-color: white !important;
+}
